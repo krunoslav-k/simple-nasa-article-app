@@ -1,0 +1,30 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+article {
+  width: 80vw;
+}
+
+h2 {
+  margin-top: 2.5rem;
+}
+
+img {
+  width: 60%;
+}
+
+p {
+  width: 70%;
+}
+
+p::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background-color: #ccc;
+  margin-top: 1em;
+}
