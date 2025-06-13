@@ -9,19 +9,19 @@ article {
   width: 80vw;
 }
 
-h2 {
+.article-title {
   margin-top: 2.5rem;
 }
 
-img {
+.article-image {
   width: 60%;
 }
 
-p {
+.article-paragraph {
   width: 70%;
 }
 
-p::after {
+.article-paragraph::after {
   content: "";
   display: block;
   height: 1px;

@@ -25,18 +25,21 @@ function renderArticle(header2El, imageEl, paragraphEl) {
 
 function renderHeader2El(articlesData) {
   const header2El = document.createElement("h2");
+  header2El.classList.add("article-title");
   header2El.textContent = articlesData.title;
   return header2El;
 }
 
 function renderImageEl(articlesData) {
   const imageEl = document.createElement("img");
+  imageEl.classList.add("article-image");
   imageEl.src = articlesData.image_url;
   return imageEl;
 }
 
 function renderParagraphEl(articlesData) {
   const paragraphEl = document.createElement("p");
+  paragraphEl.classList.add("article-paragraph");
   paragraphEl.innerText = articlesData.summary;
   return paragraphEl;
 }
