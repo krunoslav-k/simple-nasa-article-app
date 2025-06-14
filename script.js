@@ -1,12 +1,14 @@
-const endpoint = "https://api.spaceflightnewsapi.net/v4/articles";
+let endpoint = "https://api.spaceflightnewsapi.net/v4/articles";
 const bodyEl = document.querySelector("body");
+const prevButtonEl = document.querySelector(".previous-button");
+const nextButtonEl = document.querySelector(".next-button");
 let articlesData = [];
 
 async function fetchAndRenderArticlesData() {
   const responseData = await fetch(endpoint, { method: "GET" });
   articlesData = await responseData.json();
 
-  console.log(articlesData.results);
+  console.log(articlesData);
 
   articlesData.results.forEach((article) => {
     const header2El = renderHeader2El(article);
@@ -45,3 +47,13 @@ function renderParagraphEl(articlesData) {
 }
 
 fetchAndRenderArticlesData();
+
+nextButtonEl.addEventListener("click", () => {
+  endpoint = articlesData.next;
+  fetchAndRenderArticlesData();
+});
+
+prevButtonEl.addEventListener("click", () => {
+  endpoint = articlesData.previous;
+  fetchAndRenderArticlesData();
+});
