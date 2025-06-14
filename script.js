@@ -1,5 +1,6 @@
 let endpoint = "https://api.spaceflightnewsapi.net/v4/articles";
 const bodyEl = document.querySelector("body");
+const articlesWrapperEl = renderArticlesWrapper();
 const prevButtonEl = document.querySelector(".previous-button");
 const nextButtonEl = document.querySelector(".next-button");
 let articlesData = [];
@@ -15,14 +16,21 @@ async function fetchAndRenderArticlesData() {
     const imageEl = renderImageEl(article);
     const paragraphEl = renderParagraphEl(article);
 
-    renderArticle(header2El, imageEl, paragraphEl);
+    renderArticle(header2El, imageEl, paragraphEl, articlesWrapperEl);
   });
 }
 
-function renderArticle(header2El, imageEl, paragraphEl) {
+function renderArticlesWrapper() {
+  const articlesWrapperEl = document.createElement("div");
+  articlesWrapperEl.classList.add("articles-wrapper");
+  bodyEl.appendChild(articlesWrapperEl);
+  return articlesWrapperEl;
+}
+
+function renderArticle(header2El, imageEl, paragraphEl, articlesWrapperEl) {
   const articleEl = document.createElement("article");
   articleEl.append(header2El, imageEl, paragraphEl);
-  bodyEl.appendChild(articleEl);
+  articlesWrapperEl.appendChild(articleEl);
 }
 
 function renderHeader2El(articlesData) {
@@ -50,10 +58,12 @@ fetchAndRenderArticlesData();
 
 nextButtonEl.addEventListener("click", () => {
   endpoint = articlesData.next;
+  articlesWrapperEl.replaceChildren();
   fetchAndRenderArticlesData();
 });
 
 prevButtonEl.addEventListener("click", () => {
   endpoint = articlesData.previous;
+  articlesWrapperEl.replaceChildren();
   fetchAndRenderArticlesData();
 });
